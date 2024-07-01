@@ -521,7 +521,7 @@ ORDER BY
 
 Campaign idea = sponsored video series  
 
-1. GRM Daily
+a. GRM Daily
 - Average views per video = 510,000
 - Product cost = $5
 - Potential units sold per video = 510,000 x 2% conversion rate = 10,200 units sold
