@@ -4,39 +4,6 @@
 ![excel-to-powerbi-animated-diagram](assets/images/kaggle_to_powerbi.gif)
 
 
-
-
-# Table of contents 
-
-- [Objective](#objective)
-- [Data Source](#data-source)
-- [Stages](#stages)
-- [Design](#design)
-  - [Mockup](#mockup)
-  - [Tools](#tools)
-- [Development](#development)
-  - [Pseudocode](#pseudocode)
-  - [Data Exploration](#data-exploration)
-  - [Data Cleaning](#data-cleaning)
-  - [Transform the Data](#transform-the-data)
-  - [Create the SQL View](#create-the-sql-view)
-- [Testing](#testing)
-  - [Data Quality Tests](#data-quality-tests)
-- [Visualization](#visualization)
-  - [Results](#results)
-  - [DAX Measures](#dax-measures)
-- [Analysis](#analysis)
-  - [Findings](#findings)
-  - [Validation](#validation)
-  - [Discovery](#discovery)
-- [Recommendations](#recommendations)
-  - [Potential ROI](#potential-roi)
-  - [Potential Courses of Actions](#potential-courses-of-actions)
-- [Conclusion](#conclusion)
-
-
-
-
 # Objective 
 
 - What is the key pain point? 
@@ -163,9 +130,6 @@ This is the stage where you have a scan of what's in the data, errors, inconcsis
 4. We have more data than we need, so some of these columns would need to be removed
 
 
-
-
-
 ## Data cleaning 
 - What do we expect the clean data to look like? (What should it contain? What contraints should we apply to it?)
 
@@ -200,9 +164,6 @@ And here is a tabular representation of the expected schema for the clean data:
 1. Remove unnecessary columns by only selecting the ones you need
 2. Extract Youtube channel names from the first column
 3. Rename columns using aliases
-
-
-
 
 
 
@@ -262,87 +223,24 @@ FROM
 Here are the data quality tests conducted:
 
 ## Row count check
-```sql
-/*
-# Count the total number of records (or rows) are in the SQL view
-*/
-
-SELECT
-    COUNT(*) AS no_of_rows
-FROM
-    view_uk_youtubers_2024;
-
-```
-
+### SQL query and Output
 ![Row count check](assets/images/1_row_count_check.png)
 
 
 
 ## Column count check
-### SQL query 
-```sql
-/*
-# Count the total number of columns (or fields) are in the SQL view
-*/
-
-
-SELECT
-    COUNT(*) AS column_count
-FROM
-    INFORMATION_SCHEMA.COLUMNS
-WHERE
-    TABLE_NAME = 'view_uk_youtubers_2024'
-```
-### Output 
+### SQL query and Output
 ![Column count check](assets/images/2_column_count_check.png)
 
 
 
 ## Data type check
-### SQL query 
-```sql
-/*
-# Check the data types of each column from the view by checking the INFORMATION SCHEMA view
-*/
-
--- 1.
-SELECT
-    COLUMN_NAME,
-    DATA_TYPE
-FROM
-    INFORMATION_SCHEMA.COLUMNS
-WHERE
-    TABLE_NAME = 'view_uk_youtubers_2024';
-```
-### Output
+### SQL query and Output
 ![Data type check](assets/images/3_data_type_check.png)
 
 
 ## Duplicate count check
-### SQL query 
-```sql
-/*
-# 1. Check for duplicate rows in the view
-# 2. Group by the channel name
-# 3. Filter for groups with more than one row
-*/
-
--- 1.
-SELECT
-    channel_name,
-    COUNT(*) AS duplicate_count
-FROM
-    view_uk_youtubers_2024
-
--- 2.
-GROUP BY
-    channel_name
-
--- 3.
-HAVING
-    COUNT(*) > 1;
-```
-### Output
+### SQL query and Output
 ![Duplicate count check](assets/images/4_duplicate_records_check.png)
 
 # Visualization 
@@ -530,7 +428,7 @@ For this analysis, we'll prioritize analysing the metrics that are important in 
 
 Campaign idea = product placement 
 
-1. NoCopyrightSounds 
+a. NoCopyrightSounds 
 - Average views per video = 6.92 million
 - Product cost = $5
 - Potential units sold per video = 6.92 million x 2% conversion rate = 138,400 units sold
